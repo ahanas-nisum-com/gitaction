@@ -15,4 +15,5 @@ jobs:
 
       - name: Deploy to Web Server
         run: sudo rsync -avz /home/anas/actions-runner/web1/gitaction/gitaction /var/www/html/
+      - name: Restart 
         run: sudo systemctl restart apache2
