@@ -1,4 +1,4 @@
-name: CI/CD with Rsync
+name: Deploy to Web Server
 
 on:
   push:
@@ -6,10 +6,13 @@ on:
       - main
 
 jobs:
-  build-and-deploy:
-    runs-on: webactions
-  steps:
-     - name: Deploy to Server
-        uses: gitaction/rsync-action@v2
-        with:
-          args: -avz --delete --exclude '.git' --exclude '.github' --exclude 'node_modules' ${{ github.workspace }}/* ./:/var/www/html
+  deploy:
+    runs-on: self-hosted
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Deploy to Web Server
+        run: rsync -avz --delete ./name: Deploy to Web Server
+
