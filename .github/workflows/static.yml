@@ -21,6 +21,6 @@ jobs:
           # npm run build
 
       - name: Deploy to Server
-        uses: gitactions/rsync-action@master
+        uses: ahanas12/gitactions
         with:
           args: -avz --delete --exclude '.git' --exclude '.github' --exclude 'node_modules' ${{ github.workspace }}/* ./:/var/www/html
