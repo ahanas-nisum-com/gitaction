@@ -8,19 +8,8 @@ on:
 jobs:
   build-and-deploy:
     runs-on: webactions
-
-    steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v2
-
-      - name: Build
-        run: |
-          # Add any build commands here if required
-          # For example, if you use a static site generator:
-          # npm install
-          # npm run build
-
-      - name: Deploy to Server
-        uses: gitaction/rsync-action@main
+  steps:
+     - name: Deploy to Server
+        uses: gitaction/rsync-action@v2
         with:
           args: -avz --delete --exclude '.git' --exclude '.github' --exclude 'node_modules' ${{ github.workspace }}/* ./:/var/www/html
